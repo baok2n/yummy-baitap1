@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Excercise1</string>
+    <string name="consumer_key">ck_34a13e53002383f519d9925dbe18fd89db07f147</string>
+    <string name="consumer_secret">cs_ea017acfcede4070b497021106b9f2972117605a</string>
 </resources>

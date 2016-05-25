@@ -1,7 +1,9 @@
-package com.yummy.excercise1;
+package com.yummy.excercise1.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.yummy.excercise1.R;
 
 public class MainActivity extends AppCompatActivity {
 
