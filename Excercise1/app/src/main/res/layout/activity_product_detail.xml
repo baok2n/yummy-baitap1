@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yummy.excercise1.activity.ProductDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scroll_view"
+        android:fillViewport="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/button_back_to_product_list_view"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:text="&lt;"
+                android:textSize="30dp"
+                android:gravity="top" />
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/text_view_product_name"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@id/button_back_to_product_list_view"
+                android:text="Product Name"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="30dp"
+                android:gravity="top" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
