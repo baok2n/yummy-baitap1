@@ -5,11 +5,12 @@ import com.yummy.excercise1.model.ProductsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface WooCommerceService {
-    @GET("/wc-api/v3/products/99/")
-    Call<Product> getProductById();
+    @GET("products/{id}")
+    Call<Product> getProductById(@Path("id") String productId);
 
-    @GET("products/")
+    @GET("products")
     Call<ProductsResponse> getListProduct();
 }

@@ -1,9 +1,7 @@
 package com.yummy.excercise1.service;
 
 import android.util.Base64;
-
 import java.io.IOException;
-
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -36,6 +34,7 @@ public class ServiceGenerator {
                 Request.Builder requestBuilder = original.newBuilder()
                         .header("Authorization", basic)
                         .header("Accept", "application/json")
+                        .header("Content-Type", "application/json")
                         .method(original.method(), original.body());
 
                 Request request = requestBuilder.build();
