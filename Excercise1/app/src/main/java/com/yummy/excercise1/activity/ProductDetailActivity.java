@@ -19,9 +19,11 @@ public class ProductDetailActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        String productId = "96";
+        String productId = "99";
+
         WooCommerceService service = ServiceGenerator.createService(WooCommerceService.class);
-        Call<Product> productCall = service.getProductById(productId);
+        Call<Product> productCall = service.getProductById();
+       // Call<ProductsResponse> productCall = service.getListProduct();
         productCall.enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {

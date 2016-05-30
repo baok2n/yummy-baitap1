@@ -1,9 +1,6 @@
 package com.yummy.excercise1.service;
 
-import android.content.res.Resources;
 import android.util.Base64;
-
-import com.yummy.excercise1.R;
 
 import java.io.IOException;
 
@@ -25,8 +22,8 @@ public class ServiceGenerator {
                     .addConverterFactory(GsonConverterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {
-        String consumerKey = "ck_34a13e53002383f519d9925dbe18fd89db07f147";
-        String consumerSecret = "cs_ea017acfcede4070b497021106b9f2972117605a";
+        String consumerKey = "ck_8cb539efb39251f3761187525311bd5fdc7400bb";
+        String consumerSecret = "cs_1487677f3d5663545055b7a5ee4ba56445bfc14b";
 
         String credentials = consumerKey + ":" + consumerSecret;
         final String basic =
