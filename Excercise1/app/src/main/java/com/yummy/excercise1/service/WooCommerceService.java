@@ -1,6 +1,8 @@
 package com.yummy.excercise1.service;
 
 import com.yummy.excercise1.model.Product;
+import com.yummy.excercise1.model.ProductCategoriesResponse;
+import com.yummy.excercise1.model.ProductCategory;
 import com.yummy.excercise1.model.ProductsResponse;
 
 import retrofit2.Call;
@@ -14,5 +16,10 @@ public interface WooCommerceService {
     @GET("products")
     Call<ProductsResponse> getListProduct();
 
+    @GET("products/categories")
+    Call<ProductCategoriesResponse> getListCategories();
+
+    @GET("products/categories/{id}")
+    Call<ProductCategory> getCategoryByID(@Path("id") int id);
 }
 
