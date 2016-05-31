@@ -18,6 +18,7 @@ import java.util.List;
  * Created by Tri Nguyen on 5/30/2016.
  */
 public class CategoriesListAdapter extends Adapter {
+
     private List<ProductCategory> aCategory;
     static final String PRE_DES_STRING = "Description: ";
     static final String PRE_QUAN_STRING = "Quantity: ";
@@ -27,13 +28,17 @@ public class CategoriesListAdapter extends Adapter {
         this.aCategory = aCategory;
     }
 
-    public static class CategoryViewHolder extends  RecyclerView.ViewHolder{
+    public List<ProductCategory> getaCategory() {
+        return aCategory;
+    }
 
-        TextView categoryNameTextView;
-        TextView categoryQuantityTextView;
-        TextView categoryDescriptionTextView;
-        ImageView categoryImageView;
-        CardView categoryView;
+    public static class CategoryViewHolder extends  RecyclerView.ViewHolder {
+
+        public TextView categoryNameTextView;
+        public TextView categoryQuantityTextView;
+        public TextView categoryDescriptionTextView;
+        public ImageView categoryImageView;
+        public CardView categoryView;
 
         public CategoryViewHolder(View itemView)
         {
@@ -44,6 +49,7 @@ public class CategoriesListAdapter extends Adapter {
             categoryDescriptionTextView = (TextView) itemView.findViewById(R.id.cell_category_description);
             categoryImageView = (ImageView) itemView.findViewById(R.id.cell_category_image);
         }
+
     }
 
     @Override
@@ -58,10 +64,15 @@ public class CategoriesListAdapter extends Adapter {
         ((CategoryViewHolder)holder).categoryNameTextView.setText(aCategory.get(position).getName());
         ((CategoryViewHolder)holder).categoryQuantityTextView.setText(PRE_QUAN_STRING + String.valueOf(aCategory.get(position).getCount()));
         ((CategoryViewHolder)holder).categoryDescriptionTextView.setText(PRE_DES_STRING + aCategory.get(position).getDescription());
+//        Picasso.with(holder.itemView.getContext())
+//                .load(aCategory.get(position).getImage())
+//                .into(((CategoryViewHolder)holder).categoryImageView);
+
     }
 
     @Override
     public int getItemCount() {
         return aCategory.size();
     }
+
 }

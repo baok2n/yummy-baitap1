@@ -8,6 +8,7 @@ import com.yummy.excercise1.model.ProductsResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface WooCommerceService {
     @GET("products/{id}")
@@ -21,5 +22,10 @@ public interface WooCommerceService {
 
     @GET("products/categories/{id}")
     Call<ProductCategory> getCategoryByID(@Path("id") int id);
+
+    @GET("products?filter[category]=category_name")
+    Call<ProductsResponse> getListProductByCategory(
+            @Query("filter[category]") String categoryName
+    );
 }
 
