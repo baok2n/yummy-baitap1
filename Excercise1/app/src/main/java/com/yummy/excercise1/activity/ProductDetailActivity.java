@@ -8,7 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -72,11 +72,14 @@ public class ProductDetailActivity extends AppCompatActivity{
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
                 if (response.isSuccessful()) {
                     Intent intent = getIntent();
-                    String productId = intent.getStringExtra(MainActivity.PRODUCT_ID);
+                    int productId = intent.getIntExtra(ProductListByCategoryActivity.PRODUCT_ID, 0);
+                    Log.d("GET PRODUCT ID", String.valueOf(productId));
                     ProductsResponse productsResponse = response.body();
                     List<Product> listProduct = productsResponse.getProducts();
+                    Log.d("Total", String.valueOf(listProduct.size()));
                     for (Product product : listProduct) {
-                        if (product.getId() == Integer.parseInt(productId)) {
+                        Log.d("Finding", String.valueOf(product.getId()));
+                        if (product.getId() == productId) {
                             displayProduct(product);
                             break;
                         }
