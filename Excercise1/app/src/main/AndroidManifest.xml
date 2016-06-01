@@ -19,16 +19,18 @@
         <activity
             android:name=".activity.ProductListByCategoryActivity"
             android:parentActivityName=".activity.ProductCategoriesActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity" />
+                android:value=".activity.ProductCategoriesActivity" />
         </activity>
         <activity
             android:name=".activity.ProductDetailActivity"
             android:parentActivityName=".activity.ProductListByCategoryActivity">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity" />
+                android:value=".activity.ProductListByCategoryActivity" />
         </activity>
 
     </application>

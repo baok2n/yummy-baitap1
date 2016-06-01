@@ -8,19 +8,19 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 import com.yummy.excercise1.R;
 import com.yummy.excercise1.adapter.ViewPagerAdapter;
 import com.yummy.excercise1.model.Image;
 import com.yummy.excercise1.model.Product;
-import com.yummy.excercise1.model.ProductsResponse;
+import com.yummy.excercise1.model.ProductResponse;
 import com.yummy.excercise1.service.ServiceGenerator;
 import com.yummy.excercise1.service.WooCommerceService;
 
@@ -65,34 +65,37 @@ public class ProductDetailActivity extends AppCompatActivity{
         textViewPrice = (TextView) findViewById(R.id.text_view_price_in_product_detail);
         textViewDescription = (TextView) findViewById(R.id.text_view_description_in_product_detail);
 
+        Intent intent = getIntent();
+        int productId = intent.getIntExtra(ProductListByCategoryActivity.PRODUCT_ID, -1);
+
         WooCommerceService service = ServiceGenerator.createService(WooCommerceService.class);
-        Call<ProductsResponse> productsResponseCall = service.getListProduct();
-        productsResponseCall.enqueue(new Callback<ProductsResponse>() {
+        Call<ProductResponse> productsResponseCall = service.getProductById(productId);
+        productsResponseCall.enqueue(new Callback<ProductResponse>() {
             @Override
-            public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
+            public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
                 if (response.isSuccessful()) {
-                    Intent intent = getIntent();
-                    int productId = intent.getIntExtra(ProductListByCategoryActivity.PRODUCT_ID, 0);
-                    Log.d("GET PRODUCT ID", String.valueOf(productId));
-                    ProductsResponse productsResponse = response.body();
-                    List<Product> listProduct = productsResponse.getProducts();
-                    Log.d("Total", String.valueOf(listProduct.size()));
-                    for (Product product : listProduct) {
-                        Log.d("Finding", String.valueOf(product.getId()));
-                        if (product.getId() == productId) {
-                            displayProduct(product);
-                            break;
-                        }
-                    }
+                    ProductResponse productResponse = response.body();
+                    Product product = productResponse.getProduct();
+                    displayProduct(product);
                 }
             }
 
             @Override
-            public void onFailure(Call<ProductsResponse> call, Throwable t) {
+            public void onFailure(Call<ProductResponse> call, Throwable t) {
 
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+        return true;
     }
 
     private void displayProduct(Product product) {
@@ -119,7 +122,8 @@ public class ProductDetailActivity extends AppCompatActivity{
             View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
             ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img_thumb);
             imageView.setOnClickListener(onChangePageClickListener(i));
-            Picasso.with(this.getBaseContext()).load(listImage.get(i).getSrc()).into(imageView);
+            //Picasso.with(this.getBaseContext()).load(listImage.get(i).getSrc()).into(imageView);
+            Glide.with(ProductDetailActivity.this).load(listImage.get(i).getSrc()).into(imageView);
             thumbnailsContainer.addView(imageLayout);
         }
     }
