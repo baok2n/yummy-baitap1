@@ -8,12 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
+import android.view.MenuItem;
 
 import com.yummy.excercise1.R;
 import com.yummy.excercise1.adapter.ProductListByCategoryAdapter;
-import com.yummy.excercise1.adapter.RecyclerItemClickListener;
-import com.yummy.excercise1.model.Product;
 import com.yummy.excercise1.model.ProductsResponse;
 import com.yummy.excercise1.service.ServiceGenerator;
 import com.yummy.excercise1.service.WooCommerceService;
@@ -55,10 +53,9 @@ public class ProductListByCategoryActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ProductsResponse> call, Response<ProductsResponse> response) {
                 ProductsResponse productsResponse = response.body();
-                productListByCategoryAdapter = new ProductListByCategoryAdapter(productsResponse.getProducts());
+                productListByCategoryAdapter = new ProductListByCategoryAdapter(productsResponse.getProducts(), ProductListByCategoryActivity.this);
                 recyclerView.setLayoutManager(recyclerViewManager);
                 recyclerView.setAdapter(productListByCategoryAdapter);
-                //Log.e("Debug", String.valueOf(productsResponse.getProducts().size()));
             }
 
             @Override
@@ -67,17 +64,14 @@ public class ProductListByCategoryActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(this.getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        // Handle item click
-                        Product product = productListByCategoryAdapter.getProductList().get(position);
-                        Intent intent = new Intent(view.getContext(), ProductDetailActivity.class);
-                        intent.putExtra(PRODUCT_ID, product.getId());
-                        Log.d("PRODUCT ID: ", String.valueOf(product.getId()));
-                        startActivity(intent);
-                    }
-                })
-        );
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+        return true;
     }
 }

@@ -3,6 +3,7 @@ package com.yummy.excercise1.service;
 import com.yummy.excercise1.model.Product;
 import com.yummy.excercise1.model.ProductCategoriesResponse;
 import com.yummy.excercise1.model.ProductCategory;
+import com.yummy.excercise1.model.ProductResponse;
 import com.yummy.excercise1.model.ProductsResponse;
 
 import retrofit2.Call;
@@ -12,9 +13,9 @@ import retrofit2.http.Query;
 
 public interface WooCommerceService {
     @GET("products/{id}")
-    Call<Product> getProductById(@Path("id") String productId);
+    Call<ProductResponse> getProductById(@Path("id") int productId);
 
-    @GET("products")
+    @GET("products?filter[limit]=-1")
     Call<ProductsResponse> getListProduct();
 
     @GET("products/categories")
