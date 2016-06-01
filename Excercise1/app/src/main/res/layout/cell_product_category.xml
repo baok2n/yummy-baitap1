@@ -51,6 +51,8 @@
                 android:text="Description: "
                 android:textSize="16sp"
                 android:paddingLeft="16dp"
+                android:lines="2"
+                android:ellipsize="end"
                 />
 
         </LinearLayout>

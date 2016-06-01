@@ -34,7 +34,7 @@ public class ProductListByCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list_by_category);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_in_product_by_category);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(myToolbar);
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
