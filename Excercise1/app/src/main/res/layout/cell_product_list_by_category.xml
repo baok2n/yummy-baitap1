@@ -49,6 +49,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"
                 android:text="Description: "
+                android:lines="2"
+                android:ellipsize="end"
                 android:textSize="16sp" />
 
         </LinearLayout>

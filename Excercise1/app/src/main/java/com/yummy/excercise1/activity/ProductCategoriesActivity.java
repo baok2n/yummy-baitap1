@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
@@ -24,6 +25,7 @@ public class ProductCategoriesActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     CategoriesListAdapter categoriesListAdapter;
     RecyclerView.LayoutManager recyclerViewManager;
+    Toolbar productCategoriesToolbar;
     public final static String CATEGORY_NAME = "com.yummy.excercise1.CATEGORY_NAME";
 
     @Override
@@ -34,6 +36,11 @@ public class ProductCategoriesActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_category_list);
         recyclerView.setHasFixedSize(true);
         recyclerViewManager = new LinearLayoutManager(this);
+
+        productCategoriesToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        productCategoriesToolbar.inflateMenu(R.menu.product_category_menu_item);
+        productCategoriesToolbar.setTitle("Prodcut categories");
+        setSupportActionBar(productCategoriesToolbar);
 
         WooCommerceService service =  ServiceGenerator.createService(WooCommerceService.class);
         Call<ProductCategoriesResponse> categoriesResponseCall = (Call<ProductCategoriesResponse>)service.getListCategories();
