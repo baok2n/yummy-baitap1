@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,13 +16,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 import com.yummy.excercise1.R;
 import com.yummy.excercise1.adapter.ViewPagerAdapter;
 import com.yummy.excercise1.model.Image;
 import com.yummy.excercise1.model.Product;
 import com.yummy.excercise1.model.ProductResponse;
-import com.yummy.excercise1.model.ProductsResponse;
 import com.yummy.excercise1.service.ServiceGenerator;
 import com.yummy.excercise1.service.WooCommerceService;
 

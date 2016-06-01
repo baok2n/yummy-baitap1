@@ -1,6 +1,5 @@
 package com.yummy.excercise1.service;
 
-import com.yummy.excercise1.model.Product;
 import com.yummy.excercise1.model.ProductCategoriesResponse;
 import com.yummy.excercise1.model.ProductCategory;
 import com.yummy.excercise1.model.ProductResponse;
