@@ -32,15 +32,16 @@ public class ProductListByCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list_by_category);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_in_product_by_category);
+        Intent intent = getIntent();
+        String categoryName = intent.getStringExtra(ProductCategoriesActivity.CATEGORY_NAME);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        myToolbar.setTitle(categoryName);
         setSupportActionBar(myToolbar);
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
-
-        Intent intent = getIntent();
-        String categoryName = intent.getStringExtra(ProductCategoriesActivity.CATEGORY_NAME);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_product_list_by_category);
         recyclerView.setHasFixedSize(true);

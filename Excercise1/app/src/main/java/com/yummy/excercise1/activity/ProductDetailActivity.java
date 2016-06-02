@@ -48,7 +48,8 @@ public class ProductDetailActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_in_product_detail);
+        final Toolbar myToolbar = (Toolbar) findViewById(R.id.tool_bar);
+        myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
@@ -76,6 +77,7 @@ public class ProductDetailActivity extends AppCompatActivity{
                 if (response.isSuccessful()) {
                     ProductResponse productResponse = response.body();
                     Product product = productResponse.getProduct();
+                    myToolbar.setTitle(product.getTitle());
                     displayProduct(product);
                 }
             }
@@ -114,7 +116,7 @@ public class ProductDetailActivity extends AppCompatActivity{
             textViewRegularPrice.setText("");
         }
         textViewPrice.setText("$" + product.getPrice());
-        textViewDescription.setText(product.getDescription());
+        textViewDescription.setText(removeHtmlTag(product.getDescription()));
     }
 
     private void inflateThumbnails(List<Image> listImage) {
@@ -137,4 +139,15 @@ public class ProductDetailActivity extends AppCompatActivity{
         };
     }
 
+    private  String removeHtmlTag (String inputString)
+    {
+        StringBuffer newString = new StringBuffer(inputString);
+        while(newString.indexOf("<") != -1)
+        {
+            int beginTag = newString.indexOf("<");
+            int endTag = newString.indexOf(">",beginTag)+1;
+            newString = newString.delete(beginTag,endTag);
+        }
+        return newString.toString();
+    }
 }
