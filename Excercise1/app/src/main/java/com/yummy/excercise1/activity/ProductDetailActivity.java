@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.yummy.excercise1.R;
 import com.yummy.excercise1.adapter.ViewPagerAdapter;
+import com.yummy.excercise1.library.ResuableFunctions;
 import com.yummy.excercise1.model.Image;
 import com.yummy.excercise1.model.Product;
 import com.yummy.excercise1.model.ProductResponse;
@@ -116,7 +117,7 @@ public class ProductDetailActivity extends AppCompatActivity{
             textViewRegularPrice.setText("");
         }
         textViewPrice.setText("$" + product.getPrice());
-        textViewDescription.setText(removeHtmlTag(product.getDescription()));
+        textViewDescription.setText(ResuableFunctions.removeHtmlTag(product.getDescription()));
     }
 
     private void inflateThumbnails(List<Image> listImage) {
@@ -139,15 +140,4 @@ public class ProductDetailActivity extends AppCompatActivity{
         };
     }
 
-    private  String removeHtmlTag (String inputString)
-    {
-        StringBuffer newString = new StringBuffer(inputString);
-        while(newString.indexOf("<") != -1)
-        {
-            int beginTag = newString.indexOf("<");
-            int endTag = newString.indexOf(">",beginTag)+1;
-            newString = newString.delete(beginTag,endTag);
-        }
-        return newString.toString();
-    }
 }
