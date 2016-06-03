@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.yummy.excercise1.R;
 import com.yummy.excercise1.activity.ProductDetailActivity;
 import com.yummy.excercise1.activity.ProductListByCategoryActivity;
+import com.yummy.excercise1.library.ResuableFunctions;
 import com.yummy.excercise1.model.Product;
 
 import java.util.List;
@@ -66,7 +67,7 @@ public class ProductListByCategoryAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         ((CategoryViewHolder)holder).textViewProductName.setText(productList.get(position).getTitle());
         ((CategoryViewHolder)holder).textViewProductNumberOfComment.setText(PRE_NUMBER_OF_COMMENT_STRING + String.valueOf(productList.get(position).getRatingCount()));
-        ((CategoryViewHolder)holder).textViewProductDescription.setText(PRE_DES_STRING + removeHtmlTag(productList.get(position).getShortDescription()));
+        ((CategoryViewHolder)holder).textViewProductDescription.setText(PRE_DES_STRING + ResuableFunctions.removeHtmlTag(productList.get(position).getShortDescription()));
 //        Picasso.with(holder.itemView.getContext())
 //                .load(productList.get(position).getImages().get(0).getSrc())
 //                .into(((CategoryViewHolder)holder).imageViewProductImage);
@@ -87,18 +88,6 @@ public class ProductListByCategoryAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return productList.size();
-    }
-
-    private  String removeHtmlTag (String inputString)
-    {
-        StringBuffer newString = new StringBuffer(inputString);
-        while(newString.indexOf("<") != -1)
-        {
-            int beginTag = newString.indexOf("<");
-            int endTag = newString.indexOf(">",beginTag)+1;
-            newString = newString.delete(beginTag,endTag);
-        }
-        return newString.toString();
     }
 
 }
